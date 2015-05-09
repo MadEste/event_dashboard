@@ -1,12 +1,21 @@
 <%= simple_form_for(@event) do |f| %>
-  <%= f.error_notification %>
+	<%= f.error_notification %>
 
-  <div class="form-inputs">
-    <%= f.input :name %>
-    <%= f.input :description %>
-  </div>
+	<div class="form-inputs">
+		<%= f.input :name %>
+		<%= f.input :description %>
 
-  <div class="form-actions">
-    <%= f.button :submit %>
-  </div>
+	</div>
+	<div class="nested-fields">
+		<%= f.simple_fields_for :links do |link| %>
+			<%= render 'link_fields', f: link %>
+		<% end %>
+	</div>
+	<div class="links">
+		<%= link_to_add_association 'Add Link', f, :links, class: "btn btn-defauld add-buton" %>
+	</div>
+
+	<div class="form-actions">
+		<%= f.button :submit %>
+	</div>
 <% end %>
