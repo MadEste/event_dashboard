@@ -1,4 +1,5 @@
 class PageController < ApplicationController
+
   def home
   end
 
@@ -7,4 +8,5 @@ class PageController < ApplicationController
 
   def help
   end
+  
 end

@@ -1,12 +1,14 @@
 Rails.application.routes.draw do
-  get 'page/home'
 
-  get 'page/about'
 
-  get 'page/help'
 
-  devise_for :users
-  resources :events
-  
-  root "events#index"
+	devise_for :users
+	resources :events
+
+	root "events#index"
+	
+	get '/home', to: 'page#home'
+	get '/help', to: 'page#help'
+	get '/about', to: 'page#about'
+
 end
