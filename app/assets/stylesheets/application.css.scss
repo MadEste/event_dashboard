@@ -60,6 +60,13 @@ body {
 	font-size: 2em;
 	font-weight: 300;
 	color: #1D976C !important;
+	text-decoration: none;
+	a, a:hover, a:visited {
+		border: none;
+		outline: none;
+		text-decoration: none;
+		color: inherit; 
+	}
 }
 
 #jobs {
