@@ -10,16 +10,26 @@
 		<div class="nav navbar navbar-default">
 			<div class="container">
 				<div class="navbar-brand" ><%= link_to "Event Dashboard", root_path %></div>
-				<ul class="nav navbar-nav">
-					<li><%= link_to "All Events", root_path %></li>
-				</ul>
-				<%= link_to "New Event", new_event_path, class: "navbar-text navbar-right navbar-link" %>
+				<% if user_signed_in? %>
+					<ul class="nav navbar-nav navbar-right">
+						<li><%= link_to "New Event", new_event_path %></li>
+						<li><%= link_to "Account", edit_user_registration_path %></li>
+						<li><%= link_to "Sign Out", destroy_user_session_path, method: :delete %></li>
+					</ul>
+				<% else %>
+					<ul class="nav navbar-nav navbar-right">
+						<li><%= link_to "Sign Up", new_user_registration_path %></li>
+						<li><%= link_to "Sign In", new_user_session_path %></li>
+					</ul>
+				<% end %>
 			</div>
 		</div>
-		<p class="notice"><%= notice %></p>
-		<p class="alert"><%= alert %></p>
+		
 		<div class="container">
 			<div class="col-md-6 col-md-offset-3">
+				<% flash.each do |name, msg| %>
+					<%= content_tag :div, msg, class: "alert alert-info" %>
+				<% end %>
 				<%= yield %>
 			</div>
 		</div>

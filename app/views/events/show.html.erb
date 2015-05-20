@@ -1,5 +1,3 @@
-<p id="notice"><%= notice %></p>
-
 <p>
   <strong>Name:</strong>
   <%= @event.name %>
@@ -9,6 +7,16 @@
   <strong>Description:</strong>
   <%= @event.description %>
 </p>
-
+<div class="row">
+	<% @event.links.each do |link| %>
+		<div class="col-sm-6 col-md-3">
+			<div class="linkBtn">
+				<p><%= link.label %>
+				<%= url_for(link.url) %>
+				<%= link.url %></p>
+			</div>
+		</div>
+	<% end %>
+</div>
 <%= link_to 'Edit', edit_event_path(@event) %> |
 <%= link_to 'Back', events_path %>

@@ -1,6 +1,8 @@
 class EventsController < ApplicationController
+
   before_action :set_event, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, except: [:index, :show]
+  
 
   def index
     @events = Event.all
@@ -34,6 +36,8 @@ class EventsController < ApplicationController
 
   def update
     respond_to do |format|
+      # puts "call sanitize_url"
+      # sanitize_url
       if @event.update(event_params)
         format.html { redirect_to @event, notice: 'Event was successfully updated.' }
         format.json { render :show, status: :ok, location: @event }
@@ -64,4 +68,6 @@ class EventsController < ApplicationController
     def event_params
       params.require(:event).permit(:name, :description, links_attributes: [:id, :label, :url, :_destroy])
     end
+
+
 end
