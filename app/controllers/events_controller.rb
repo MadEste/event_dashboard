@@ -15,6 +15,10 @@ class EventsController < ApplicationController
   end
 
   def edit
+    if @event.user_id != current_user.id
+      flash[:error] = "Not allowed"
+      redirect_to root_path
+    end
   end
 
   # POST /events
@@ -34,23 +38,27 @@ class EventsController < ApplicationController
   end
 
   def update
-    respond_to do |format|
-      # puts "call sanitize_url"
-      # sanitize_url
-      if @event.update(event_params)
-        format.html { redirect_to @event, notice: 'Event was successfully updated.' }
-        format.json { render :show, status: :ok, location: @event }
-      else
-        format.html { render :edit }
-        format.json { render json: @event.errors, status: :unprocessable_entity }
+    if @event.user_id == current_user.id
+      respond_to do |format|
+        # puts "call sanitize_url"
+        # sanitize_url
+        if @event.update(event_params)
+          format.html { redirect_to @event, notice: 'Event was successfully updated.' }
+          format.json { render :show, status: :ok, location: @event }
+        else
+          format.html { render :edit }
+          format.json { render json: @event.errors, status: :unprocessable_entity }
+        end
       end
+    else
+      flash[:error] = "Not allowed"
+      redirect_to root_path
     end
   end
 
   # DELETE /events/1
   # DELETE /events/1.json
   def destroy
-
     if @event.user_id == current_user.id
       @event.destroy
       respond_to do |format|
