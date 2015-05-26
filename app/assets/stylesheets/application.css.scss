@@ -29,7 +29,9 @@ body {
   background:      -o-linear-gradient(90deg, #1D976C 10%, #93F9B9 90%);
   background:         linear-gradient(90deg, #1D976C 10%, #93F9B9 90%);
   font-family: 'Lato', sans-serif;
-
+  a:hover{
+		background-color: transparent;
+	}
 }
 
 .clearfix:before,

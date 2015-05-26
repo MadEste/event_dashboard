@@ -11,11 +11,14 @@
 			<%= render 'link_fields', f: link %>
 		<% end %>
 	</div>
-	<div class="links">
-		<%= link_to_add_association 'Add Link', f, :links, class: "btn btn-defauld add-buton" %>
+	<div class="links" style="padding: 30px 30px;">
+		<%= link_to_add_association 'Add Link', f, :links, class: "btn btn-default add-buton" %>
 	</div>
 
 	<div class="form-actions">
 		<%= f.button :submit %>
+	
+		<%= link_to 'Back', events_path, class: "btn btn-default" %>
 	</div>
+
 <% end %>
