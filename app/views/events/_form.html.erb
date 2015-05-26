@@ -4,21 +4,22 @@
 	<div class="form-inputs">
 		<%= f.input :name %>
 		<%= f.input :description %>
-
+		<hr>
 	</div>
 	<div class="nested-fields">
 		<%= f.simple_fields_for :links do |link| %>
 			<%= render 'link_fields', f: link %>
 		<% end %>
 	</div>
-	<div class="links" style="padding: 30px 30px;">
+	<div class="links">
 		<%= link_to_add_association 'Add Link', f, :links, class: "btn btn-default add-buton" %>
 	</div>
 
-	<div class="form-actions">
+	<div class="form-actions" style="padding: 0px 0px 15px 0px;">
+		<hr>
 		<%= f.button :submit %>
 	
-		<%= link_to 'Back', events_path, class: "btn btn-default" %>
+		<%= link_to 'Back', events_path, class: "btn btn-default", style: "margin-left: 10px;" %>
 	</div>
 
 <% end %>
