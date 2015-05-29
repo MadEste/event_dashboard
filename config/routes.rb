@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
 
 	devise_for :users
-	resources :events
+	resources :events do
+		resources :schedule
+	end
 	
 	get '/home', to: 'page#home'
 	get '/help', to: 'page#help'

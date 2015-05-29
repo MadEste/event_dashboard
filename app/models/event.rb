@@ -2,6 +2,7 @@ class Event < ActiveRecord::Base
 	before_save :sanitize_url
 	belongs_to :user
 	has_many :links, dependent: :destroy
+	has_one :schedule, dependent: :destroy
 
 	accepts_nested_attributes_for :links, reject_if: :all_blank, allow_destroy: true
 
