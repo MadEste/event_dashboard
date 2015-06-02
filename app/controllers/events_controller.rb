@@ -11,7 +11,9 @@ class EventsController < ApplicationController
   end
 
   def new
+    puts "runing new"
     @event = current_user.events.build
+    @schedule = @event.build_schedule(user_id: current_user.id)
 
   end
 
@@ -19,14 +21,19 @@ class EventsController < ApplicationController
     if @event.user_id != current_user.id
       flash[:error] = "Not allowed"
       redirect_to root_path
+    else
+      @schedule = @event.schedule
     end
+
   end
 
   # POST /events
   # POST /events.json
   def create
+    puts "running create"
     @event = current_user.events.create(event_params)
-    @event.build_schedule(user_id: current_user.id)
+    @schedule = @event.build_schedule(user_id: current_user.id)
+
     
 
     respond_to do |format|
@@ -82,7 +89,11 @@ class EventsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def event_params
-      params.require(:event).permit(:name, :description, links_attributes: [:id, :label, :url, :_destroy])
+      params.require(:event).permit(
+        :name, :description, 
+        links_attributes: [:id, :label, :url, :_destroy], 
+        schedule_attributes: [:id, :_destroy, days_attributes: [:id, :date, :_destroy]]
+        )
     end
 
 

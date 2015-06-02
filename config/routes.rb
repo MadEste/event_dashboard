@@ -2,8 +2,14 @@ Rails.application.routes.draw do
 
 	devise_for :users
 	resources :events do
-		resources :schedule
+		resources :schedules
 	end
+
+	resources :schedules do
+		resources :days
+	end
+
+
 	
 	get '/home', to: 'page#home'
 	get '/help', to: 'page#help'

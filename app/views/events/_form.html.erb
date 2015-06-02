@@ -6,13 +6,35 @@
 		<%= f.input :description %>
 		<hr>
 	</div>
+
+	<div>
+		<button type="button" class="btn schedbtn btn-default btn-block">Event Schedule</button>
+		 
+		<div class="collapse">
+			<br>
+			<%= link_to_add_association 'Add Day', f, :days, class: "btn btn-block btn-default add-buton" %> 
+			<%= f.simple_fields_for :days do |day| %>
+				<%= render 'day_fields', f: day %>
+			<% end %>
+		</div>
+		<hr>
+	</div>
+
+	<script>
+		$(document).ready(function(){
+			$(".schedbtn").click(function(){
+				$(".collapse").collapse('toggle');
+			});
+		});
+	</script>
+
 	<div class="nested-fields">
 		<%= f.simple_fields_for :links do |link| %>
 			<%= render 'link_fields', f: link %>
 		<% end %>
 	</div>
 	<div class="links">
-		<%= link_to_add_association 'Add Link', f, :links, class: "btn btn-default add-buton" %>
+		<%= link_to_add_association 'Add Link', f, :links, class: "btn btn-block btn-default add-buton" %>
 	</div>
 
 	<div class="form-actions" style="padding: 0px 0px 15px 0px;">
