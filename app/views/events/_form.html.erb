@@ -12,16 +12,8 @@
 		 
 		<div class="collapse">
 			<br>
-			
 			<%= f.simple_fields_for :schedule do |schedule| %>
-				<%= schedule.simple_fields_for :days do |day| %>
-					<div class="nested-fields">
-						<%= day.input :date, input_html: { class: "form-input form-control" } %>
-						<%= link_to_remove_association "Remove", day, class: "form-button btn btn-default" %>
-						<hr>
-					</div>
-				<% end %>
-				<%= link_to_add_association 'Add Day', schedule, :days, class: "btn btn-block btn-default add-buton" %> 
+				<%= render 'schedule_fields', f: schedule %>
 			<% end %>
 		</div>
 		<hr>
