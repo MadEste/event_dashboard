@@ -13,7 +13,7 @@ class EventsController < ApplicationController
   def new
     puts "runing new"
     @event = current_user.events.build
-    @schedule = @event.build_schedule(user_id: current_user.id)
+    @schedule = @event.build_schedule(event_id: @event.id, user_id: current_user.id, )
 
   end
 
@@ -32,7 +32,9 @@ class EventsController < ApplicationController
   def create
     puts "running create"
     @event = current_user.events.create(event_params)
-    @schedule = @event.build_schedule(user_id: current_user.id)
+   # @schedule = @event.create_schedule(event_id: @event.id, user_id: current_user.id)
+    #@schedule.days.create
+
 
     
 
