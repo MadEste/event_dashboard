@@ -1,15 +1,11 @@
 
-	<p><%= @event.schedule.id %></p>
-	<p><%= @schedule %><%= @schedule.id %></p>
-<div>
-	<div class="links">
-		<%= link_to_add_association 'Add Day', f, :days, class: "btn btn-block btn-default add-buton" %>
-	</div>
-	<div class=" nested-fields">
-		<%= f.simple_fields_for :days do |day| %>
-			<%= render 'day_fields', f: day %>
-		<% end %>
-	</div>
+<div class=" nested-fields">
+	<%= f.simple_fields_for :days do |day| %>
+		<%= render 'day_fields', f: day %>
+	<% end %>
+</div>
+<div class="links">
+	<%= link_to_add_association 'Add Day', f, :days, class: "btn btn-block btn-default add-buton" %>
 </div>
 
 

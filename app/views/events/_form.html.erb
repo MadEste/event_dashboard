@@ -6,41 +6,58 @@
 		<%= f.input :description %>
 		<hr>
 	</div>
+	
+	<div class="panel-group" id="accordion">
 
-	<div>
-		<button type="button" class="btn schedbtn btn-default btn-block">Event Schedule</button>
-		 
-		<div class="collapse">
-			<br>
-			<%= f.simple_fields_for :schedule do |schedule| %>
-				<%= render 'schedule_fields', f: schedule %>
-			<% end %>
-		</div>
+		<div class="panel panel-default">
+	      <div class="panel-heading">
+	      	<h4 class="panel-title", style="text-align: center;">
+	         	<a data-toggle="collapse" data-parent="#accordion" href="#schedule">Event Schedule</a>
+	         </h4>
+	      </div>
+	      <div id="schedule" class="panel-collapse collapse">
+	      	<div class="panel-body">
+					<br>
+					<%= f.simple_fields_for :schedule do |schedule| %>
+						<%= render 'schedule_fields', f: schedule %>
+					<% end %>
+	      	</div>
+	      </div>
+	   </div>
+
 		<hr>
-	</div>
+		
+		<div class="panel panel-default">
+	      <div class="panel-heading">
+	      	<h4 class="panel-title" style="text-align: center;">
+	         	<a data-toggle="collapse" data-parent="#accordion" href="#linksExpand">Event Links</a>
+	         </h4>
+	      </div>
+	      <div id="linksExpand" class="panel-collapse collapse">
+	      	<div class="panel-body">
+					<br>
+					<div class="nested-fields">
+						<%= f.simple_fields_for :links do |link| %>
+							<%= render 'link_fields', f: link %>
+						<% end %>
+					</div>
+					<div class="links">
+						<%= link_to_add_association 'Add Link', f, :links, class: "btn btn-block btn-default add-buton" %>
+					</div>
+	      	</div>
+	      </div>
+	   </div>
 
-	<script>
-		$(document).ready(function(){
-			$(".schedbtn").click(function(){
-				$(".collapse").collapse('toggle');
-			});
-		});
-	</script>
-
-	<div class="nested-fields">
-		<%= f.simple_fields_for :links do |link| %>
-			<%= render 'link_fields', f: link %>
-		<% end %>
-	</div>
-	<div class="links">
-		<%= link_to_add_association 'Add Link', f, :links, class: "btn btn-block btn-default add-buton" %>
 	</div>
 
 	<div class="form-actions" style="padding: 0px 0px 15px 0px;">
 		<hr>
 		<%= f.button :submit %>
-	
 		<%= link_to 'Back', events_path, class: "btn btn-default", style: "margin-left: 10px;" %>
 	</div>
 
 <% end %>
+
+
+
+

@@ -16,3 +16,10 @@
 //= require cocoon
 //= require turbolinks
 //= require_tree .
+
+//changes partial render position relative to other content
+$('schedule_fields').ready(function() {
+    $("a.add_fields").
+      data("association-insertion-method", 'before').
+      data("association-insertion-node", 'this');
+});
