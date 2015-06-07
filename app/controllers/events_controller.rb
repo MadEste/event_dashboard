@@ -94,7 +94,9 @@ class EventsController < ApplicationController
       params.require(:event).permit(
         :name, :description, 
         links_attributes: [:id, :label, :url, :_destroy], 
-        schedule_attributes: [:id, :_destroy, days_attributes: [:id, :date, :_destroy]]
+        schedule_attributes: [:id, :_destroy, 
+          days_attributes: [:id, :date, :_destroy,
+            dayevents_attributes: [:id, :title, :start, :stop, :description, :_destroy]]]
         )
     end
 
