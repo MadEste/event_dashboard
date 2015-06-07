@@ -1,18 +1,16 @@
 <div class="nested-fields">
 	<div class="form-inline">
-	<%= f.input :date, date_select: { class: "form-input form-control" } %>
-	<%= link_to_remove_association "Remove", f, class: "form-button btn btn-default" %>
+		<%= f.input :date, date_select: { class: "form-input form-control" } %>
+		<%= link_to_remove_association "Remove", f, class: "form-button btn btn-default" %>
 	</div>
-			<%= f.simple_fields_for :dayevents do |devent| %>
-				<%= render 'dayevent_fields', f: devent %>
-			<% end %>
+	<br>
+	<%= f.simple_fields_for :dayevents do |devent| %>
+		<%= render 'dayevent_fields', f: devent %>
+	<% end %>
 
+	<div class="links" style="margin-left: 60px;">
 
-			<div class="links">
-				<%= link_to_add_association 'Add Event', f, :dayevents, class: "btn btn-small add-button" %>
-			</div>	
-
-
-
-	<hr>
+		<%= link_to_add_association 'Add Event', f, :dayevents, class: "btn btn-default btn-sm add-button" %>
+	</div>
+	<hr>		
 </div>

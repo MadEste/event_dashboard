@@ -1,10 +1,10 @@
-<div class="nested-fields">
-	<%= f.input :title, input_html: { class: "form-input form-control" } %>
+<div class="nested-fields" style="margin-left: 60px;">
+	<%= f.input :title, input_html: { class: "form-input form-control input-sm" } %>
 	<div class="form-inline">
-		<%= f.input :start, input_html: { class: "form-input form-control" } %>
-		<%= f.input :stop, input_html: { class: "form-input form-control" } %>
+		<%= f.input :start, label: 'Begins', input_html: { class: 'form-input form-control input-sm' } %>
+		<%= f.input :stop, label: 'Ends', input_html: { class: "form-input form-control input-sm" } %>
 	</div>
-	<%= f.input :description, input_html: { class: "form-input form-control" } %>
-	<%= link_to_remove_association "Remove", f, class: "form-button btn btn-default" %>
+	<%= f.input :description, input_html: { class: "form-input form-control input-sm" } %>
+	<%= link_to_remove_association "Remove", f, class: "form-button btn btn-default btn-sm" %>
 	<hr>
 </div>
