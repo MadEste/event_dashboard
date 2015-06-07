@@ -11,7 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150530040209) do
+ActiveRecord::Schema.define(version: 20150607005817) do
+
+  create_table "dayevents", force: :cascade do |t|
+    t.integer  "day_id"
+    t.string   "title"
+    t.time     "start"
+    t.time     "stop"
+    t.text     "description"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "dayevents", ["day_id"], name: "index_dayevents_on_day_id"
 
   create_table "days", force: :cascade do |t|
     t.date     "date"

@@ -1,0 +1,10 @@
+<div class="nested-fields">
+	<%= f.input :title, input_html: { class: "form-input form-control" } %>
+	<div class="form-inline">
+		<%= f.input :start, input_html: { class: "form-input form-control" } %>
+		<%= f.input :stop, input_html: { class: "form-input form-control" } %>
+	</div>
+	<%= f.input :description, input_html: { class: "form-input form-control" } %>
+	<%= link_to_remove_association "Remove", f, class: "form-button btn btn-default" %>
+	<hr>
+</div>
