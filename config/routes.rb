@@ -3,11 +3,15 @@ Rails.application.routes.draw do
 	devise_for :users
 	resources :events do
 		resources :schedules
+
 	end
 
 	resources :schedules do
 		resources :days
 	end
+
+	# Route for File Downloads
+	#get '/events/get/:id' => 'events#get'
 
 
 	

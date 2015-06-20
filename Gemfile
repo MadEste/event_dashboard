@@ -17,6 +17,8 @@ gem 'simple_form', '~> 3.1.0'
 gem 'devise', '~> 3.4.1'
 gem 'cocoon', '~> 1.2.6'
 gem 'paperclip', '~> 4.2.2'
+# gem 'aws-s3'
+gem 'aws-sdk', '< 2.0'
 
 # gem 'capistrano-rails', group: :development
 group :development, :test do
