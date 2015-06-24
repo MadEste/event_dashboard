@@ -40,13 +40,21 @@
 				  	<% @event.schedule.days.each_with_index do |day, index| %>
 				    	<% if index == 0 %>
 				    		<div id="<%= day.id %>" class="tab-pane fade in active">
-						      <h3>first</h3>
-						      <p>first tab</p>
+				    			<% day.dayevents.order("start ASC").each do |event| %>
+							      <h3><%= event.title %></h3>
+							      <h4>From <%= event.start.strftime("%l:%M %p") %> to <%= event.stop.strftime("%l:%M %p") %></h4>
+							      <p><%= event.description %></p>
+							      <hr>
+						      <% end %>
 						  	</div>
 				    	<% else %>
 				    		<div id="<%= day.id %>" class="tab-pane fade">
-						      <h3>others</h3>
-						      <p>Loothsadfl ja stuff other</p>
+						      <% day.dayevents.order("start ASC").each do |event| %>
+							      <h3><%= event.title %></h3>
+							      <h4>     From <%= event.start.strftime("%l:%M %p") %> to <%= event.stop.strftime("%l:%M %p") %></h4>
+							      <p>     <%= event.description %></p>
+							      <hr>
+						      <% end %>
 						  	</div>
 				    	<% end %>
 				    <% end %>
