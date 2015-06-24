@@ -60,14 +60,15 @@
 	      	<div class="panel-body">
 					<br>
 					<p>
-						code to upload files goes will go in here.
+						Warning! All uploaded files will be public!
+					</p>
 						<%= f.simple_fields_for :assets, :html => { :multipart => true } do |asset| %>
 							<%= render 'asset_fields', f: asset %>
 						<% end %>
 						<div class="links">
 						<%= link_to_add_association 'Add file', f, :assets, class: "btn btn-block btn-default add-buton" %>
 					</div>
-					</p>
+					
 	      	</div>
 	      </div>
 	   </div>

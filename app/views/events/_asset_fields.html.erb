@@ -1,6 +1,5 @@
 <div class="nested-fields">
-	<%= :file_name %>
-	<%= f.label :file_name %>
 	<%= f.file_field :uploaded_file %>
+	<%= link_to_remove_association "Remove", f, class: "form-button btn btn-default" %>
 	<hr>
 </div>

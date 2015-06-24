@@ -1,39 +1,90 @@
-<div class="container">
-	<h1>
+<div class="row">
+	<h1 align="center">
 	  <%= @event.name %>
 	</h1>
+	<br/>
 	<h4>
 	  <%= @event.description %>
 	</h4>
+</div>
+<br/>
+<div class="row">
+	<% @event.links.each do |link| %>
+			<%= link_to link.label, link.url, target: "_blank", class: "btn btn-default btn-lg" %>
+	<% end %>
+</div>
+<br/>
+<div class="row">
+	<div class="panel-group" id="accordion">
+		<div class="panel panel-default">
+	      <div class="panel-heading">
+	      	<h4 class="panel-title", style="text-align: center;">
+	         	<a data-toggle="collapse" data-parent="#accordion" href="#schedule">Event Schedule</a>
+	         </h4>
+	      </div>
 
-	<div class="row">
-		<% @event.links.each do |link| %>
-			<div class="col-sm-6 col-md-3">
-				<%= link_to link.label, link.url, target: "_blank", class: "btn btn-default btn-lg" %>
-			</div>
-		<% end %>
-	</div>
+	      <div id="schedule" class="panel-collapse collapse">
+	      	<div class="panel-body">
 
-	<div class="row">
-		<table> 
-			<tr>
-				<td><p>Uploaded Files</p></td>
-			</tr>
-			<% @event.assets.each do |asset| %>
-				<tr> 
-					<td><%= link_to asset.file_name, asset.uploaded_file.url %></td> 
-					<td><%= link_to "Show", asset %></td> 
-				</tr> 
-  			<% end %> 
-		</table> 
-	</div>
+				  <ul class="nav nav-tabs">
+				    <% @event.schedule.days.each_with_index do |day, index| %>
+				    	<% if index == 0 %>
+				    		<li class="active"><a href="#<%= day.id %>" data-toggle="tab"><%= day.date.strftime("%d %B") %></a></li>
+				    	<% else %>
+				    		<li><a href="#<%= day.id %>" data-toggle="tab"><%= day.date.strftime("%d %B") %></a></li>
+				    	<% end %>
+				    <% end %>
+				  </ul>
 
-	<div class="row">
-		<br>
-		<% if current_user.id == @event.user_id %>
-			<%= link_to "Edit", edit_event_path(@event), class: "btn btn-default" %>  
-			<%= link_to "Delete", event_path(@event), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-default" %>  
-		<% end %>
-		<%= link_to 'Back', events_path, class: "btn btn-default" %>
+				  <div class="tab-content">
+				  	<% @event.schedule.days.each_with_index do |day, index| %>
+				    	<% if index == 0 %>
+				    		<div id="<%= day.id %>" class="tab-pane fade in active">
+						      <h3>first</h3>
+						      <p>first tab</p>
+						  	</div>
+				    	<% else %>
+				    		<div id="<%= day.id %>" class="tab-pane fade">
+						      <h3>others</h3>
+						      <p>Loothsadfl ja stuff other</p>
+						  	</div>
+				    	<% end %>
+				    <% end %>
+				  </div>
+	      	</div>
+	      </div>
+	   </div>
+
+	   <br/>
+
+	   <div class="panel panel-default">
+	      <div class="panel-heading">
+	      	<h4 class="panel-title", style="text-align: center;">
+	         	<a data-toggle="collapse" data-parent="#accordion" href="#uploads">Uploaded Files</a>
+	         </h4>
+	      </div>
+	      <div id="uploads" class="panel-collapse collapse">
+	      	<div class="panel-body">
+					<table> 
+						<tr>
+							<td><h4 align="center">Uploaded Files</h4></td>
+						</tr>
+						<% @event.assets.each do |asset| %>
+							<tr> 
+								<td><%= link_to asset.file_name, asset.uploaded_file.url %></td> 
+							</tr> 
+							<% end %> 
+					</table> 
+	      	</div>
+	      </div>
+	   </div>
 	</div>
+</div>
+<div class="row">
+	<br>
+	<% if current_user.id == @event.user_id %>
+		<%= link_to "Edit", edit_event_path(@event), class: "btn btn-default" %>  
+		<%= link_to "Delete", event_path(@event), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-default" %>  
+	<% end %>
+	<%= link_to 'Back', events_path, class: "btn btn-default" %>
 </div>
