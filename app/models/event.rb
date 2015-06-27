@@ -4,12 +4,12 @@ class Event < ActiveRecord::Base
 	has_many :links, dependent: :destroy
 	has_one :schedule, dependent: :destroy
 	has_many :assets, dependent: :destroy
-	#has_many :days, through: :schedule
+	has_many :days, through: :schedule
 
 	accepts_nested_attributes_for :links, reject_if: :all_blank, allow_destroy: true
 	accepts_nested_attributes_for :schedule, allow_destroy: true
 	accepts_nested_attributes_for :assets, allow_destroy: true
-	#accepts_nested_attributes_for :days, allow_destroy: true
+	accepts_nested_attributes_for :days, allow_destroy: true
 
 	validates :name, :description, presence: true
 

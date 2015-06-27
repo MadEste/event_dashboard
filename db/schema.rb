@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20150613052616) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "assets", force: :cascade do |t|
     t.integer  "event_id"
     t.datetime "created_at",                 null: false
@@ -27,7 +30,7 @@ ActiveRecord::Schema.define(version: 20150613052616) do
     t.datetime "uploaded_file_updated_at"
   end
 
-  add_index "assets", ["event_id"], name: "index_assets_on_event_id"
+  add_index "assets", ["event_id"], name: "index_assets_on_event_id", using: :btree
 
   create_table "dayevents", force: :cascade do |t|
     t.integer  "day_id"
@@ -39,7 +42,7 @@ ActiveRecord::Schema.define(version: 20150613052616) do
     t.datetime "updated_at",  null: false
   end
 
-  add_index "dayevents", ["day_id"], name: "index_dayevents_on_day_id"
+  add_index "dayevents", ["day_id"], name: "index_dayevents_on_day_id", using: :btree
 
   create_table "days", force: :cascade do |t|
     t.date     "date"
@@ -48,7 +51,7 @@ ActiveRecord::Schema.define(version: 20150613052616) do
     t.datetime "updated_at",  null: false
   end
 
-  add_index "days", ["schedule_id"], name: "index_days_on_schedule_id"
+  add_index "days", ["schedule_id"], name: "index_days_on_schedule_id", using: :btree
 
   create_table "events", force: :cascade do |t|
     t.string   "name"
@@ -66,7 +69,7 @@ ActiveRecord::Schema.define(version: 20150613052616) do
     t.datetime "updated_at", null: false
   end
 
-  add_index "links", ["event_id"], name: "index_links_on_event_id"
+  add_index "links", ["event_id"], name: "index_links_on_event_id", using: :btree
 
   create_table "schedules", force: :cascade do |t|
     t.integer  "event_id"
@@ -75,8 +78,8 @@ ActiveRecord::Schema.define(version: 20150613052616) do
     t.datetime "updated_at", null: false
   end
 
-  add_index "schedules", ["event_id"], name: "index_schedules_on_event_id"
-  add_index "schedules", ["user_id"], name: "index_schedules_on_user_id"
+  add_index "schedules", ["event_id"], name: "index_schedules_on_event_id", using: :btree
+  add_index "schedules", ["user_id"], name: "index_schedules_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -93,7 +96,13 @@ ActiveRecord::Schema.define(version: 20150613052616) do
     t.datetime "updated_at"
   end
 
-  add_index "users", ["email"], name: "index_users_on_email", unique: true
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
+  add_foreign_key "assets", "events"
+  add_foreign_key "dayevents", "days"
+  add_foreign_key "days", "schedules"
+  add_foreign_key "links", "events"
+  add_foreign_key "schedules", "events"
+  add_foreign_key "schedules", "users"
 end
