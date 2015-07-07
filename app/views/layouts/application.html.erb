@@ -28,7 +28,10 @@
 		<div class="container">
 			<div class="col-md-6 col-md-offset-3">
 				<% flash.each do |name, msg| %>
-					<%= content_tag :div, msg, class: "alert alert-info" %>
+					<div class="alert alert-info fade in">
+				    <button class="close" data-dismiss="alert">×</button>
+				    <%= msg %>
+				  </div>
 				<% end %>
 				<%= yield %>
 			</div>

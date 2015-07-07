@@ -2,8 +2,8 @@ source 'https://rubygems.org'
 
 #Default Gems
 gem 'rails', '4.2.1'
-#gem 'sqlite3'
-gem 'pg'
+gem 'sqlite3'
+#gem 'pg'
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.1.0'
