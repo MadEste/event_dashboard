@@ -1,3 +1,14 @@
 == README
 
-First Git Push
+ - First Git Push
+
+Event Dashboard - The simple app that makes event organization easy!
+Organize and share event information with your patrons from one convenient location.
+
+Gems Used ==>  gem 'bootstrap-sass', '~> 3.3.4.1'
+					gem 'simple_form', '~> 3.1.0'
+					gem 'devise', '~> 3.4.1'
+					gem 'cocoon', '~> 1.2.6'
+					gem 'paperclip', '~> 4.2.2'
+					gem 'aws-sdk', '< 2.0'
+
